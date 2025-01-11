@@ -64,10 +64,13 @@ public class Question {
             break;
             case Category.GEOGRAPHY:
             questionCategory = "Geografía";
+            break;
             case Category.CINEMA:
             questionCategory = "Cine";
+            break;
             case Category.LITERATURE:
             questionCategory = "Literatura";
+            break;
             default:
             questionCategory = "error";
         }
