@@ -12,9 +12,28 @@ public class Repository{
         "Metal Gear Solid",
         "Fallout 4"
     );
-    
+    static Question question2 = new Question(
+        2, 
+        Category.ANATOMY, 
+        "¿Cual de los siguientes músculos se encuentra en la pierna?", 
+        "Recto Anterior", 
+        "Braquial", 
+        "Romboides", 
+        "Esternocleidomastoideo"
+    );
+    static Question question3 = new Question(
+        3, 
+        Category.VIDEOGAMES, 
+        "¿Que personaje de Overwatch recibió un cambio de nombre debido a problemas con Blizzard?", 
+        "McCree", 
+        "Tracer", 
+        "Reinhardt", 
+        "Mei"
+    );
     static{
-        questionList.add(question1);        
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
     }
 }
 

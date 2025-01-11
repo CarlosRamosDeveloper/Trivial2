@@ -87,7 +87,7 @@ public class Question {
 
 
 
-    public boolean checkAnswer(char input){
+    public String checkAnswer(char input){
         int index;        
         switch(input) {
             case 'a':
@@ -107,9 +107,28 @@ public class Question {
         }
 
         if (index == answers.indexOf(correctAnswer)) {
-            return true;
+            return "¡En efecto, la respuesta correcta es "+correctAnswer+"!\n";
         } 
         
-        return false;
+        index = answers.indexOf(correctAnswer);
+        char charIndex = 'a';
+        switch(index) {
+            case 0:
+            charIndex = 'a';
+            break;
+            case 1:
+            charIndex = 'b';
+            break;
+            case 2:
+            charIndex = 'c';
+            break;
+            case 3:
+            charIndex = 'd';
+            break;
+            default:
+            charIndex = 'a';
+        }
+        
+        return "¡Oh, eso es un error!\n¡La respuesta correcta era la "+charIndex+": "+correctAnswer+"!";
     }
 }
