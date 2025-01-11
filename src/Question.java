@@ -62,6 +62,12 @@ public class Question {
             case Category.ANATOMY:
             questionCategory = "Anatomía";
             break;
+            case Category.GEOGRAPHY:
+            questionCategory = "Geografía";
+            case Category.CINEMA:
+            questionCategory = "Cine";
+            case Category.LITERATURE:
+            questionCategory = "Literatura";
             default:
             questionCategory = "error";
         }
@@ -69,8 +75,25 @@ public class Question {
         return questionCategory;
     }
 
-    public String askPlayer(){
-        String message = "Pregunta de la categoría "+readCategory()+"...\n";
+    public String askPlayer(int counter){
+        String message = "";
+        int rng = (int)(Math.random() *100+1);
+        if (counter == 0) {
+            message += "Primera pregunta...\nDe ";
+        } else if (counter+1 == Repository.questionList.size()){
+            message += "Y por último...\n...\n¡Última pregunta! De ";
+        } else if (rng <=20){
+            message += "Pregunta de ";
+        } else if (rng <= 40) {
+            message += "Uff, esta la veo difícil... De ";
+        } else if (rng <= 60) {
+            message += "Siguiente pregunta... esta en concreto pertenece a ";
+        } else if (rng <= 80) {
+            message += "¡La tensión se nota en el ambiente, ¿no creen?! Siguiente pregunta, de ";
+        } else {
+            message += "¡Vamos con la siguiente pregunta! Pertenece a ";
+        }
+        message += "la categoría "+readCategory()+"...\n";
         message += this.statement + "\n";
         return message;
     }
