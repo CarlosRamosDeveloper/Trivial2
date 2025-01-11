@@ -111,9 +111,7 @@ public class Question {
         return message;
     }
 
-
-
-    public String checkAnswer(char input){
+    public int inputSwitcher(char input) {
         int index;        
         switch(input) {
             case 'a':
@@ -131,15 +129,12 @@ public class Question {
             default:
             index = 0;
         }
+        return index;
+    }
 
-        if (index == answers.indexOf(correctAnswer)) {
-            PlayerInfo.score++;
-            return "¡En efecto, la respuesta correcta es "+correctAnswer+"!\n";
-        } 
-        
-        index = answers.indexOf(correctAnswer);
+    public char inputSwitcher(int input){
         char charIndex = 'a';
-        switch(index) {
+        switch(input) {
             case 0:
             charIndex = 'a';
             break;
@@ -155,6 +150,19 @@ public class Question {
             default:
             charIndex = 'a';
         }
+        return charIndex;
+    }
+
+    public String checkAnswer(char input){
+        int index = inputSwitcher(input);
+
+        if (index == answers.indexOf(correctAnswer)) {
+            PlayerInfo.score++;
+            return "¡En efecto, la respuesta correcta es "+correctAnswer+"!\n";
+        } 
+                
+        index = answers.indexOf(correctAnswer);        
+        char charIndex = inputSwitcher(index);
         
         return "¡Oh, eso es un error!\n¡La respuesta correcta era la "+charIndex+": "+correctAnswer+"!";
     }
