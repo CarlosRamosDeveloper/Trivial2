@@ -107,6 +107,7 @@ public class Question {
         }
 
         if (index == answers.indexOf(correctAnswer)) {
+            PlayerInfo.score++;
             return "¡En efecto, la respuesta correcta es "+correctAnswer+"!\n";
         } 
         
