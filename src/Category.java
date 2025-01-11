@@ -1,4 +1,7 @@
 enum Category {
     VIDEOGAMES,
-    ANATOMY
+    ANATOMY,
+    GEOGRAPHY,
+    CINEMA,
+    LITERATURE
 }
