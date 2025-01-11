@@ -26,16 +26,20 @@ public class Presenter {
 
     public void presenterChecksAnswers(int counter, char playerInput) {
         System.out.println(Repository.questionList.get(counter).checkAnswer(playerInput));
-    }
-    
-    public void presenterTellsScore(){
-        System.out.println(PlayerInfo.readScore());
+    }    
+
+    public String presenterTellsScore(){
+        String message = "Tu puntuación actual es de "+PlayerInfo.score+" punto";
+        if (PlayerInfo.score != 1) {
+            message +="s";
+        }
+        return message;
     }
 
     public void presenterEndsShow(){
         System.out.println("Ha obtenido un total de "+PlayerInfo.score);
         if (PlayerInfo.score == Repository.questionList.size()) {
-            System.out.println("Felicidades, "+PlayerInfo.playerName+", ha alcanzado la puntuación máxima");
+            System.out.println("Felicidades, "+PlayerInfo.playerName+", ¡Ha alcanzado la puntuación máxima!");
         } else if (PlayerInfo.score == 0) {
             System.out.println("Vaya, definitivamente hoy no era su día, "+PlayerInfo.playerName);
         }
