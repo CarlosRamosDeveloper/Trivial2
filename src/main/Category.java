@@ -1,4 +1,6 @@
-enum Category {
+package main;
+
+public enum Category {
     VIDEOGAMES,
     ANATOMY,
     GEOGRAPHY,

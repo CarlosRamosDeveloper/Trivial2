@@ -1,3 +1,5 @@
+package main;
+
 public class Presenter {
     public Presenter(){}
 
@@ -25,7 +27,17 @@ public class Presenter {
     }
 
     public void presenterChecksAnswers(int counter, char playerInput) {
-        System.out.println(Repository.questionList.get(counter).checkAnswer(playerInput));
+        boolean isPlayerRight = Repository.questionList.get(counter).checkAnswer(playerInput);
+        System.out.println();
+        if(isPlayerRight) {
+            PlayerInfo.score++;
+            System.out.println("¡En efecto, la respuesta correcta es "+Repository.questionList.get(counter).getCorrectAnswer());
+        } else {
+            int index =
+                    Repository.questionList.get(counter).getAnswers().indexOf(Repository.questionList.get(counter).getCorrectAnswer());
+            char charIndex = Repository.questionList.get(counter).inputSwitcher(index);
+            System.out.println("¡Oh, eso es un error!\n¡La respuesta correcta era la "+charIndex+": "+Repository.questionList.get(counter).getCorrectAnswer()+"!");
+        }
     }    
 
     public String presenterTellsScore(){

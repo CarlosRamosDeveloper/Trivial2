@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -6,8 +8,8 @@ public class Question {
     private int id;
     private Category category;
     private String statement;
-    private String correctAnswer;    
-    private List<String> answers = new ArrayList<>();
+    private String correctAnswer;
+    private final List<String> answers = new ArrayList<>();
    
     public Question(int id, Category category, String statement, String correctAnswer, 
         String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
@@ -53,29 +55,18 @@ public class Question {
         this.statement = statement;
     }
 
+    public List<String> getAnswers() {
+        return answers;
+    }
+
     public String readCategory() {
-        String questionCategory = "";
-        switch(category){
-            case Category.VIDEOGAMES:
-            questionCategory = "Videojuegos";
-            break;
-            case Category.ANATOMY:
-            questionCategory = "Anatomía";
-            break;
-            case Category.GEOGRAPHY:
-            questionCategory = "Geografía";
-            break;
-            case Category.CINEMA:
-            questionCategory = "Cine";
-            break;
-            case Category.LITERATURE:
-            questionCategory = "Literatura";
-            break;
-            default:
-            questionCategory = "error";
-        }
-        
-        return questionCategory;
+        return switch (category) {
+            case VIDEOGAMES -> "Videojuegos";
+            case ANATOMY -> "Anatomía";
+            case GEOGRAPHY -> "Geografía";
+            case CINEMA -> "Cine";
+            case LITERATURE -> "Literatura";
+        };
     }
 
     public String askPlayer(int counter){
@@ -104,7 +95,7 @@ public class Question {
     public String readAnswers() {
         Collections.shuffle(answers);
         String message = "Las respuestas son:\n";
-        message += "a) "+ answers.get(0)+"\n";
+        message += "a) "+answers.get(0)+"\n";
         message += "b) "+answers.get(1)+"\n";
         message += "c) "+answers.get(2)+"\n";
         message += "d) "+answers.get(3)+"\n";
@@ -153,17 +144,10 @@ public class Question {
         return charIndex;
     }
 
-    public String checkAnswer(char input){
+    public boolean checkAnswer(char input){
         int index = inputSwitcher(input);
 
-        if (index == answers.indexOf(correctAnswer)) {
-            PlayerInfo.score++;
-            return "¡En efecto, la respuesta correcta es "+correctAnswer+"!\n";
-        } 
-                
-        index = answers.indexOf(correctAnswer);        
-        char charIndex = inputSwitcher(index);
-        
-        return "¡Oh, eso es un error!\n¡La respuesta correcta era la "+charIndex+": "+correctAnswer+"!";
+        return index == answers.indexOf(correctAnswer);
     }
+
 }
